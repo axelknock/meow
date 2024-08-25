@@ -632,7 +632,7 @@ Will cancel all other selection, except char selection. "
   (interactive)
   (let ((ra (region-active-p)))
     (when (and ra
-           (not (equal '(expand . char) (meow--selection-type))))
+               (not (equal '(expand . char) (meow--selection-type))))
       (meow-cancel-selection))
     (when (or (not meow-use-cursor-position-hack)
               (not ra)
@@ -974,7 +974,7 @@ This command will expand line selection."
          (orig-p (point))
          (beg-end (save-mark-and-excursion
                     (if meow-goto-line-function
-                      (call-interactively meow-goto-line-function)
+                        (call-interactively meow-goto-line-function)
                       (meow--execute-kbd-macro meow--kbd-goto-line))
                     (cons (line-beginning-position)
                           (line-end-position))))
@@ -1127,7 +1127,7 @@ Will create selection with type (expand . block)."
   (interactive "P")
   ;; We respect the direction of block selection.
   (let ((back (or (when (equal 'block (cdr (meow--selection-type)))
-                     (meow--direction-backward-p))
+                    (meow--direction-backward-p))
                   (< (prefix-numeric-value arg) 0)))
         (depth (car (syntax-ppss)))
         (orig-pos (point))
@@ -1721,7 +1721,7 @@ This command is a replacement for built-in `kmacro-end-macro'."
     (move-marker mouse-secondary-start (point))
     (meow--beacon-remove-overlays))
    ((markerp mouse-secondary-start)
-       (or
+    (or
      (when-let ((buf (marker-buffer mouse-secondary-start)))
        (pop-to-buffer buf)
        (when-let ((pos (marker-position mouse-secondary-start)))
@@ -1741,7 +1741,7 @@ This command is a replacement for built-in `kmacro-end-macro'."
     (move-marker next-marker (point))
     (meow--second-sel-set-string (or region-str ""))
     (when (overlayp mouse-secondary-overlay)
-       (delete-overlay mouse-secondary-overlay))
+      (delete-overlay mouse-secondary-overlay))
     (setq mouse-secondary-start next-marker)
     (meow--cancel-selection)))
 
